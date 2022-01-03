@@ -23,6 +23,14 @@ const SearchBar = () => {
             marginRight: 10
           }
         }}
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          console.log(data, details)
+        }}
+        query={{
+          key: 'AIzaSyDJW2pjz2phtK4r9VzGZBwGGukdrR42nvc',
+          language: 'en'
+        }}
         renderLeftButton={() => (
           <View style={{ marginLeft: 10 }}>
             <Ionicons name='location-sharp' size={24} />
