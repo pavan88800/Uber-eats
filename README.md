@@ -1,7 +1,7 @@
 # uber-eats
 
 
-# How to Install 
+# How to Install The App
 
 ```sh
 # Clone the repository
