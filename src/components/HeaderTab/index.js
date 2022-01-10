@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-const HeaderTab = () => {
-  const [active, setActive] = useState('Delivery')
+import Icon from 'react-native-vector-icons/FontAwesome5'
+import { useNavigation } from '@react-navigation/native'
+
+const HeaderTab = ({ active, setActive }) => {
+  const navigation = useNavigation()
   return (
     <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+      <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+        <Icon name='align-left' style={{ fontSize: 20, marginRight: 50 }} />
+      </TouchableOpacity>
       <HeaderBotton text='Delivery' setActive={setActive} active={active} />
       <HeaderBotton text='PickUp' setActive={setActive} active={active} />
     </View>
