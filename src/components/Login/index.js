@@ -24,7 +24,6 @@ const Login = () => {
       auth
         .signInWithEmailAndPassword(email, password)
         .then(user => {
-          console.log(user, 'user')
           alert(' Login Successfully ')
           // navigate to home screen
           setTimeout(() => {
