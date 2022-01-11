@@ -12,6 +12,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "android": {
+      "googleServicesFile": "./google-services.json"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist"
+    },
+   
     "updates": {
       "fallbackToCacheTimeout": 0
     },
