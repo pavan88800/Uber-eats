@@ -1,4 +1,4 @@
-import { REQUEST_RESTAURANT, GET_RESTAURANT } from '../types'
+import { REQUEST_RESTAURANT, GET_RESTAURANT, RESTAURANT_RESET } from '../types'
 
 const initialState = {
   loading: false,
@@ -17,6 +17,7 @@ export const restaurantReducer = (state = initialState, action) => {
         loading: false,
         restaurant: payload
       }
+
     default:
       return {
         state

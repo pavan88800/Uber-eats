@@ -9,8 +9,10 @@ import {
 } from 'react-native'
 import { styles } from './style'
 import { useNavigation } from '@react-navigation/native'
-import { auth } from '../../firebase'
+import { useDispatch } from 'react-redux'
+import { registerUser } from '../../redux/actions/user'
 const Signup = () => {
+  const dispatch = useDispatch()
   const navigation = useNavigation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -30,19 +32,10 @@ const Signup = () => {
       return alert('Please fill all fields')
     } else {
       //sing up the email and password
-      auth
-        .createUserWithEmailAndPassword(email, password)
-        .then(_ => {
-          alert('Successfully signup')
-          // navigate to home screen
-          setTimeout(() => {
-            return navigation.navigate('Login')
-          }, 1500)
-        })
-        .catch(error => {
-          return alert(error.message)
-        })
-
+      dispatch(registerUser(email, password))
+      setTimeout(() => {
+        navigation.navigate('Login')
+      }, 1500)
       setEmail('')
       setPassword('')
       setConfirmPassword('')

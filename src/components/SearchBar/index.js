@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
+// import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -19,7 +19,6 @@ const SearchBar = ({ setLocation }) => {
       return
     }
     let location = await Location.getCurrentPositionAsync({})
-    console.log(location)
     setLat(location.coords.latitude)
     setLong(location.coords.longitude)
   }
@@ -31,13 +30,10 @@ const SearchBar = ({ setLocation }) => {
 
   return (
     <View style={styles.searchBarView}>
-      <GooglePlacesAutocomplete
-        query={{
-          key: process.env.MAP_QUERY_KEY,
-          language: 'en'
-        }}
+      {/* <GooglePlacesAutocomplete
         autoFocus={true}
         placeholder='Search'
+        debounce={100}
         onPress={(data, details = null) => {
           setLocation(details.description.split(',')[0])
         }}
@@ -86,7 +82,7 @@ const SearchBar = ({ setLocation }) => {
         {errorMsg && alert(text)}
         <Text>{lat}</Text>
         <Text>{long}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   )
 }
