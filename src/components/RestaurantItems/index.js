@@ -5,12 +5,9 @@ import Loader from '../../../assets/images/loadergif.gif'
 import { styles } from './style'
 
 const RestaurantItems = ({ data, loading }) => {
-  console.log(loading)
-
   let checkIfExits = data?.map(item => {
     return item?.name
   })
-
   return (
     <>
       {loading ? (

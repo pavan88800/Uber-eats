@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   View,
   Text,
@@ -9,71 +9,97 @@ import {
 } from 'react-native'
 import { styles } from './style'
 import { useNavigation } from '@react-navigation/native'
+import { loginUser, logout } from '../../redux/actions/user'
+import { useDispatch, useSelector } from 'react-redux'
 import { auth } from '../../firebase'
 const Login = () => {
   const navigation = useNavigation()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const user = useSelector(state => state.loginReducers)
+  const { loading, error } = user
+  const dispatch = useDispatch()
+  const [email, setEmail] = useState('pavan123@gmail.com')
+  const [password, setPassword] = useState('123123')
+
+  useEffect(() => {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        navigation.navigate('Home')
+        console.log(user.uid)
+      } else {
+        dispatch(logout())
+      }
+    })
+  }, [dispatch])
 
   const handleSubmit = () => {
     //check if all filed are filled
     if (email === '' || password === '') {
       return alert('Please fill all fields')
     } else {
-      //sign in using the email and password
-      auth
-        .signInWithEmailAndPassword(email, password)
-        .then(user => {
-          alert(' Login Successfully ')
-          // navigate to home screen
-          setTimeout(() => {
-            return navigation.navigate('Home')
-          }, 1500)
-        })
-        .catch(error => {
-          return alert(error.message)
-        })
-
-      setEmail('')
-      setPassword('')
+      dispatch(loginUser(email, password))
     }
   }
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
-      <View>
+    <>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
         <Text style={styles.loginText}>Log In</Text>
-        <View style={styles.textInputView}>
-          <TextInput
-            style={styles.input}
-            autoCapitalize='none'
-            placeholder='Enter the Email'
-            value={email}
-            autoFocus={true}
-            onChangeText={email => setEmail(email)}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder='Enter the Password'
-            autoCapitalize='none'
-            secureTextEntry={true}
-            value={password}
-            onChangeText={password => setPassword(password)}
-          />
-          <TouchableOpacity
-            style={{ alignSelf: 'center' }}
-            onPress={() => navigation.navigate('Signup')}
-          >
-            <Text>if you don't have an account singUp</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleSubmit()}
-          >
-            <Text style={styles.buttonText}>Submit</Text>
-          </TouchableOpacity>
+        <View>
+          {loading && (
+            <Text
+              style={{
+                alignSelf: 'center',
+                position: 'relative',
+                paddingTop: 40
+              }}
+            >
+              Loading...
+            </Text>
+          )}
+          {error && (
+            <Text
+              style={{
+                alignSelf: 'center',
+                position: 'relative',
+                paddingTop: 40
+              }}
+            >
+              Email or Password is Incorrect
+            </Text>
+          )}
+          <View style={styles.textInputView}>
+            <TextInput
+              style={styles.input}
+              autoCapitalize='none'
+              placeholder='Enter the Email'
+              value={email}
+              autoFocus={true}
+              onChangeText={email => setEmail(email)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder='Enter the Password'
+              autoCapitalize='none'
+              secureTextEntry={true}
+              value={password}
+              onChangeText={password => setPassword(password)}
+            />
+            <TouchableOpacity
+              style={{ alignSelf: 'center' }}
+              onPress={() => navigation.navigate('Signup')}
+            >
+              <Text>if you don't have an account singUp</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => handleSubmit()}
+            >
+              <Text style={styles.buttonText}>Submit</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   )
 }
 
