@@ -8,7 +8,17 @@ import {
   LOGOUT
 } from '../types'
 
-export const usersReducers = (state = {}, action) => {
+interface State {
+  loading: boolean,
+  userInfo: any,
+
+}
+const initialState : State = {
+  loading : false,
+  userInfo: {}, 
+}
+
+export const usersReducers = (state = initialState, action : any) => {
   const { type, payload } = action
   switch (type) {
     case USER_REGISTER_REQUEST:
@@ -36,7 +46,22 @@ export const usersReducers = (state = {}, action) => {
   }
 }
 
-export const loginReducers = (state = {}, action) => {
+
+interface StateLogin {
+  loading: boolean,
+  isAuthenticated: boolean,
+  userInfo: any,
+
+}
+
+const initialStateLogin: StateLogin = {
+  loading : false,
+  isAuthenticated: false,
+  userInfo: {}, 
+}
+
+
+export const loginReducers = (state = initialStateLogin, action : any) => {
   const { type, payload } = action
   console.log(state, 'isAuthenticated from reducer')
   switch (type) {

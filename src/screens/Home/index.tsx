@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef , FC } from 'react'
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
 import Categories from '../../components/Categories'
 import HeaderTab from '../../components/HeaderTab'
@@ -9,19 +9,17 @@ import { getRestaurant } from '../../redux/actions/restaurant'
 import { useDispatch, useSelector } from 'react-redux'
 import 'react-native-gesture-handler'
 import { styles } from './style'
-import { YELP_API_KEY } from '@env'
-import { REQUEST_RESTAURANT } from '../../redux/types'
-import { useIsFocused } from '@react-navigation/native'
-const Home = () => {
+
+const Home : FC =  () => {
   const dispatch = useDispatch()
-  const { restaurant, loading } = useSelector(state => state.restaurantReducer)
-  const [active, setActive] = useState('Delivery')
-  const [location, setLocation] = useState('New York')
+  const { restaurant, loading } = useSelector((state:any) => state.restaurantReducer)
+  const [active, setActive] = useState<string>('Delivery')
+  const [location, setLocation] = useState<string>('New York')
   useEffect(() => {
     dispatch(getRestaurant(location))
   }, [dispatch, location])
 
-  const data = restaurant?.businesses?.filter(business =>
+  const data = restaurant?.businesses?.filter((business: { transactions: string | string[] })  => 
     business?.transactions?.includes(active?.toLowerCase())
   )
 

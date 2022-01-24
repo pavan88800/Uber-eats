@@ -5,13 +5,13 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     margin: 8,
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
   icon: {
     alignSelf: 'center',
-    marginBottom: 3
+    marginBottom: 3,
   },
   iconText: {
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 })

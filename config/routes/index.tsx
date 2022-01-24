@@ -11,7 +11,7 @@ import Signout from '../../src/components/Signout'
 import PushNotification from '../../src/components/PushNotification'
 const Route = () => {
   const Stack = createNativeStackNavigator()
-  const user = useSelector(state => state.loginReducers?.state)
+  const user  = useSelector(state  => state.loginReducers?.state)
   const Drawer = createDrawerNavigator()
 
   console.log(user?.state?.isAuthenticated, 'isAuthenticated')

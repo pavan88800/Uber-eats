@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { SafeAreaView, Text, TouchableOpacity } from 'react-native'
 import { auth } from '../../firebase'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/user'
-const Signout = () => {
-  const navigation = useNavigation()
+const Signout : FC = () => {
+  const navigation :any = useNavigation()
   const dispatch = useDispatch()
   const logouter = () => {
     try {

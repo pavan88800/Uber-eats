@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { items } from '../data'
 import { styles } from './style'
-const Categories = () => {
+const Categories: FC = () => {
   return (
     <View style={styles.viewContainer}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
