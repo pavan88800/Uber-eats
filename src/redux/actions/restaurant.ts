@@ -1,6 +1,6 @@
 import { REQUEST_RESTAURANT, GET_RESTAURANT } from '../types'
 import { YELP_API_KEY } from '@env'
-export const getRestaurant = location => async dispatch => {
+export const getRestaurant  = (location: string) => async (dispatch: (arg0: { type: string; payload?: any }) => void) => {
   try {
     dispatch({
       type: REQUEST_RESTAURANT

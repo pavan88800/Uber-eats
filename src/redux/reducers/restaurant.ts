@@ -1,11 +1,15 @@
 import { REQUEST_RESTAURANT, GET_RESTAURANT, RESTAURANT_RESET } from '../types'
 
-const initialState = {
-  loading: false,
+interface State {
+    loading: boolean,
+    restaurant: []
+}
+const initialState : State = {
+  loading : false,
   restaurant: []
 }
 
-export const restaurantReducer = (state = initialState, action) => {
+export const restaurantReducer = (state = initialState, action : any)  => {
   const { type, payload } = action
   switch (type) {
     case REQUEST_RESTAURANT:

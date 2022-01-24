@@ -9,7 +9,10 @@ import {
   RESTAURANT_RESET
 } from '../types'
 import { auth } from '../../firebase'
-export const registerUser = (email, password) => async dispatch => {
+import { FC } from 'react'
+
+
+export const registerUser = (email: string, password: string) => async (dispatch: (arg0: { type: string; payload?: unknown }) => void) => {
   try {
     dispatch({
       type: USER_REGISTER_REQUEST
@@ -28,7 +31,7 @@ export const registerUser = (email, password) => async dispatch => {
   }
 }
 
-export const loginUser = (email, password) => async dispatch => {
+export const loginUser = (email: string, password: string) => async (dispatch: (arg0: { type: string; payload?: unknown }) => void) => {
   try {
     dispatch({
       type: USER_LOGIN_REQUEST
@@ -47,7 +50,7 @@ export const loginUser = (email, password) => async dispatch => {
   }
 }
 
-export const logout = () => async dispatch => {
+export const logout = () => async (dispatch: (arg0: { type: string; payload?: unknown }) => void) => {
   try {
     dispatch({
       type: LOGOUT

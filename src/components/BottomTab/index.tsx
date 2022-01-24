@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { styles } from './style'
 
-export const BottomTab = () => {
+// interface 
+interface Props {
+  name: string
+  text: string
+}
+export const BottomTab: FC = () => {
   return (
     <View style={styles.viewContainer}>
       <FontAwesome name='home' text='Home' />
@@ -15,7 +20,7 @@ export const BottomTab = () => {
   )
 }
 
-const FontAwesome = ({ name, text }) => {
+const FontAwesome: FC<Props> = ({ name, text }) => {
   return (
     <View>
       <TouchableOpacity>

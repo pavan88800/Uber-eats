@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { FC, useState ,   } from 'react'
 import {
   View,
   Text,
   SafeAreaView,
   TextInput,
+  Alert,
   Button,
   TouchableOpacity
 } from 'react-native'
@@ -11,9 +12,9 @@ import { styles } from './style'
 import { useNavigation } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { registerUser } from '../../redux/actions/user'
-const Signup = () => {
+const Signup  : FC = () => {
   const dispatch = useDispatch()
-  const navigation = useNavigation()
+  const navigation : any = useNavigation()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -21,15 +22,15 @@ const Signup = () => {
   const handleSubmit = () => {
     // check password length
     if (password.length < 6) {
-      return alert('Password must be at least 6 characters')
+      return  Alert.alert('Password must be at least 6 characters')
     }
     // check if password and confirm password are same
     if (password !== confirmPassword) {
-      return alert('Password and confirm password are not same')
+      return  Alert.alert('Password and confirm password are not same')
     }
     //check if all filed are filled
     if (email === '' || password === '' || confirmPassword === '') {
-      return alert('Please fill all fields')
+      return  Alert.alert('Please fill all fields')
     } else {
       //sing up the email and password
       dispatch(registerUser(email, password))
